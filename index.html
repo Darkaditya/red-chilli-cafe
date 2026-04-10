@@ -4,20 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Red Chilli Cafe — Patna</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
 :root{--crimson:#8B0000;--crimson-light:#C0392B;--crimson-dark:#5C0000;--gold:#C9A84C;--gold-light:#E8C97A;--cream:#FAF3E0;--cream-dark:#F0E4C8;--white:#FFFDF7;--text-dark:#1A0A00;--text-mid:#4A2010;--text-muted:#8B6050;--border:rgba(201,168,76,0.3);--border-strong:rgba(201,168,76,0.6);}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text-dark);min-height:100vh;}
 .view{display:none;}.view.active{display:block;}
-
-/* LOADING */
 #loading-screen{position:fixed;inset:0;background:var(--crimson-dark);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;gap:16px;}
 .spinner{width:48px;height:48px;border:3px solid rgba(201,168,76,0.2);border-top-color:var(--gold);border-radius:50%;animation:spin 0.8s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
 .loading-text{font-family:'Cinzel',serif;color:var(--gold-light);font-size:14px;letter-spacing:3px;}
-
-/* LANDING */
 #landing{min-height:100vh;background:var(--crimson-dark);position:relative;overflow:hidden;}
 .landing-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(201,168,76,0.15) 0%,transparent 70%),linear-gradient(160deg,#3D0000 0%,#8B0000 40%,#5C0000 100%);}
 .pattern-overlay{position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(201,168,76,0.03) 40px,rgba(201,168,76,0.03) 41px),repeating-linear-gradient(-45deg,transparent,transparent 40px,rgba(201,168,76,0.03) 40px,rgba(201,168,76,0.03) 41px);}
@@ -40,12 +36,7 @@ body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text-dark
 .btn-outline{width:100%;padding:14px 32px;background:transparent;color:var(--gold-light);border:1px solid rgba(201,168,76,0.5);cursor:pointer;font-family:'Cinzel',serif;font-size:12px;font-weight:400;letter-spacing:3px;text-transform:uppercase;transition:all 0.3s;}
 .btn-outline:hover{background:rgba(201,168,76,0.1);border-color:var(--gold);}
 .landing-footer{position:relative;z-index:2;text-align:center;padding:20px;color:rgba(201,168,76,0.4);font-size:12px;letter-spacing:2px;}
-
-/* LANG TOGGLE ON LANDING */
 .lang-btn{position:absolute;top:16px;right:16px;z-index:10;padding:8px 16px;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.4);color:var(--gold-light);cursor:pointer;font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;border-radius:20px;transition:all 0.2s;}
-.lang-btn:hover{background:rgba(201,168,76,0.3);}
-
-/* MODAL */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:1000;align-items:center;justify-content:center;padding:20px;}
 .modal-overlay.open{display:flex;}
 .modal-box{background:var(--white);border:1px solid var(--border-strong);max-width:440px;width:100%;padding:40px 32px;position:relative;animation:slideUp 0.3s ease;max-height:90vh;overflow-y:auto;}
@@ -59,19 +50,15 @@ body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text-dark
 .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold);background:var(--white);}
 .modal-close{position:absolute;top:12px;right:16px;background:none;border:none;cursor:pointer;font-size:22px;color:var(--text-muted);line-height:1;}
 .tab-toggle{display:flex;border:1px solid var(--border);margin-bottom:24px;}
-.tab-toggle button{flex:1;padding:10px;background:none;border:none;cursor:pointer;font-family:'Lato',sans-serif;font-size:13px;letter-spacing:1px;color:var(--text-muted);transition:all 0.2s;}
+.tab-toggle button{flex:1;padding:10px;background:none;border:none;cursor:pointer;font-family:'Lato',sans-serif;font-size:13px;color:var(--text-muted);transition:all 0.2s;}
 .tab-toggle button.active{background:var(--crimson);color:var(--cream);}
 .error-msg{color:var(--crimson);font-size:12px;margin-top:8px;display:none;}
-
-/* APP HEADER */
 .app-header{background:var(--crimson-dark);padding:0 16px;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(201,168,76,0.3);}
 .header-logo{font-family:'Cinzel',serif;color:var(--gold-light);font-size:18px;font-weight:700;letter-spacing:2px;}
 .header-nav{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
-.nav-btn{padding:7px 13px;background:none;border:1px solid rgba(201,168,76,0.3);color:var(--cream);cursor:pointer;font-size:11px;letter-spacing:1px;font-family:'Lato',sans-serif;transition:all 0.2s;}
+.nav-btn{padding:7px 12px;background:none;border:1px solid rgba(201,168,76,0.3);color:var(--cream);cursor:pointer;font-size:11px;letter-spacing:1px;font-family:'Lato',sans-serif;transition:all 0.2s;}
 .nav-btn:hover{background:rgba(201,168,76,0.2);border-color:var(--gold);color:var(--gold-light);}
 .user-badge{background:rgba(201,168,76,0.2);border:1px solid var(--gold);color:var(--gold-light);padding:6px 12px;font-size:11px;letter-spacing:1px;font-family:'Cinzel',serif;}
-
-/* MENU */
 #menu-page{min-height:calc(100vh - 60px);background:var(--cream);padding-bottom:80px;}
 .menu-hero{background:var(--crimson-dark);padding:32px 20px;text-align:center;border-bottom:1px solid rgba(201,168,76,0.3);}
 .menu-hero h2{font-family:'Cinzel',serif;color:var(--gold-light);font-size:28px;letter-spacing:4px;}
@@ -99,15 +86,11 @@ body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text-dark
 .add-btn:hover{background:var(--crimson-light);}
 .add-btn:disabled{opacity:0.3;cursor:not-allowed;}
 .size-select{padding:6px 8px;border:1px solid var(--border);background:var(--cream);font-size:12px;margin-right:4px;font-family:'Lato',sans-serif;color:var(--text-dark);}
-
-/* CART */
 .cart-bar{position:fixed;bottom:0;left:0;right:0;background:var(--crimson-dark);border-top:2px solid var(--gold);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;z-index:200;transform:translateY(100%);transition:transform 0.3s;}
 .cart-bar.visible{transform:translateY(0);}
 .cart-count{font-family:'Cinzel',serif;font-size:16px;color:var(--gold-light);}
 .cart-total{font-size:13px;color:rgba(255,255,255,0.7);margin-top:2px;}
 .cart-btn{padding:12px 24px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--crimson-dark);border:none;cursor:pointer;font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:2px;}
-
-/* ORDER MODAL */
 .order-modal{max-width:560px;}
 .cart-items-list{max-height:220px;overflow-y:auto;margin-bottom:16px;}
 .cart-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);}
@@ -121,19 +104,13 @@ body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text-dark
 .order-total-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-top:2px solid var(--border-strong);margin-top:8px;}
 .order-total-label{font-family:'Cinzel',serif;font-size:14px;letter-spacing:2px;color:var(--text-mid);}
 .order-total-amt{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:var(--crimson);}
-
-/* RATING STARS */
 .star-rating{display:flex;gap:6px;justify-content:center;margin:12px 0;}
 .star{font-size:28px;cursor:pointer;opacity:0.3;transition:all 0.2s;line-height:1;}
 .star.active{opacity:1;}
 .star:hover{transform:scale(1.2);}
-
-/* PAYMENT BADGE */
 .pay-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border-radius:2px;cursor:pointer;border:none;font-family:'Lato',sans-serif;}
 .pay-unpaid{background:#FFEBEE;color:#C62828;}
 .pay-paid{background:#E8F5E9;color:#2E7D32;}
-
-/* ADMIN */
 #admin-page{min-height:calc(100vh - 60px);background:#F8F0E0;}
 .admin-nav{background:var(--white);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;padding:0 12px;}
 .admin-tab{padding:14px 16px;background:none;border:none;cursor:pointer;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--text-muted);border-bottom:2px solid transparent;white-space:nowrap;transition:all 0.2s;}
@@ -197,15 +174,12 @@ body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text-dark
 .notification.show{opacity:1;}
 .sync-badge{font-size:10px;padding:4px 10px;border-radius:12px;letter-spacing:1px;}
 .sync-ok{background:rgba(46,125,50,0.3);color:#81C784;}
-.sync-local{background:rgba(239,108,0,0.3);color:#FFB74D;}
+.sync-err{background:rgba(239,68,68,0.3);color:#FCA5A5;}
 .saving-ind{position:fixed;bottom:90px;right:16px;background:var(--crimson-dark);color:var(--gold-light);border:1px solid var(--gold);padding:8px 14px;font-size:11px;font-family:'Cinzel',serif;z-index:300;display:none;border-radius:4px;}
-
-/* SOUND TOGGLE */
-.sound-toggle{display:flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);border-radius:4px;cursor:pointer;color:var(--gold-light);font-size:12px;font-family:'Cinzel',serif;transition:all 0.2s;}
+.sound-toggle{display:flex;align-items:center;gap:8px;padding:7px 12px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);border-radius:4px;cursor:pointer;color:var(--gold-light);font-size:11px;font-family:'Cinzel',serif;transition:all 0.2s;}
 .sound-toggle.on{background:rgba(201,168,76,0.25);}
-
-/* BILL MODAL */
-.bill-modal{max-width:420px;}
+.new-order-alert{position:fixed;top:70px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--crimson-dark);padding:14px 28px;font-family:'Cinzel',serif;font-size:13px;font-weight:700;letter-spacing:2px;z-index:9998;border-radius:4px;animation:alertPulse 0.5s ease;display:none;text-align:center;white-space:nowrap;}
+@keyframes alertPulse{0%{transform:translateX(-50%) scale(0.8);opacity:0;}100%{transform:translateX(-50%) scale(1);opacity:1;}}
 .bill-paper{background:white;border:1px solid #ddd;padding:24px;font-family:'Courier New',monospace;}
 .bill-header{text-align:center;border-bottom:2px dashed #333;padding-bottom:12px;margin-bottom:12px;}
 .bill-title{font-size:20px;font-weight:bold;letter-spacing:2px;}
@@ -214,20 +188,9 @@ body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text-dark
 .bill-divider{border:none;border-top:1px dashed #ccc;margin:10px 0;}
 .bill-total-row{display:flex;justify-content:space-between;font-size:15px;font-weight:bold;padding:6px 0;border-top:2px solid #333;}
 .bill-footer{text-align:center;margin-top:12px;font-size:11px;color:#666;}
-
-/* RATING IN MY ORDERS */
-.rating-display{display:flex;gap:3px;}
-.rating-star{font-size:16px;opacity:0.3;}
-.rating-star.filled{opacity:1;}
-
-/* NEW ORDER ALERT */
-.new-order-alert{position:fixed;top:70px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--crimson-dark);padding:14px 28px;font-family:'Cinzel',serif;font-size:13px;font-weight:700;letter-spacing:2px;z-index:9998;border-radius:4px;animation:alertPulse 0.5s ease;display:none;text-align:center;white-space:nowrap;}
-@keyframes alertPulse{0%{transform:translateX(-50%) scale(0.8);opacity:0;}100%{transform:translateX(-50%) scale(1);opacity:1;}}
-
-@media print{
-  body>*:not(#print-area){display:none!important;}
-  #print-area{display:block!important;}
-}
+.fb-status{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--gold-light);font-family:'Cinzel',serif;}
+.fb-dot{width:8px;height:8px;border-radius:50%;background:#81C784;}
+.fb-dot.err{background:#F87171;}
 </style>
 </head>
 <body>
@@ -235,22 +198,19 @@ body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text-dark
 <div id="loading-screen">
   <div style="font-size:48px;">🌶️</div>
   <div class="spinner"></div>
-  <div class="loading-text" id="loading-txt">Red Chilli Cafe</div>
-  <div style="font-size:12px;color:rgba(201,168,76,0.5);letter-spacing:2px;margin-top:4px;" id="loading-sub">Data load ho raha hai...</div>
+  <div class="loading-text">Red Chilli Cafe</div>
+  <div style="font-size:12px;color:rgba(201,168,76,0.5);letter-spacing:2px;margin-top:4px;" id="loading-sub">Firebase se connect ho raha hai...</div>
 </div>
 
 <div id="new-order-alert" class="new-order-alert"></div>
 <div class="saving-ind" id="saving-ind">💾 Saving...</div>
 <div class="notification" id="notif"></div>
 
-<!-- PRINT AREA (hidden, only for print) -->
-<div id="print-area" style="display:none;"></div>
-
 <!-- LANDING -->
 <div class="view" id="landing">
   <div class="landing-bg"></div>
   <div class="pattern-overlay"></div>
-  <button class="lang-btn" onclick="toggleLang()" id="lang-btn-landing">EN / हि</button>
+  <button class="lang-btn" onclick="toggleLang()">EN / हि</button>
   <div class="landing-content">
     <div class="logo-emblem"><span class="chilli-icon">🌶️</span></div>
     <div class="restaurant-name">Red Chilli</div>
@@ -259,9 +219,9 @@ body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text-dark
     <div class="divider-gold"></div>
     <div class="tagline" id="l-tagline">Har Niwaala Ek Yaad Banata Hai</div>
     <div class="landing-info">
-      <div class="info-badge"><span id="l-cuisine-lbl">Cuisine</span><span>Multi-Cuisine</span></div>
-      <div class="info-badge"><span id="l-contact-lbl">Contact</span><span>8757761834</span></div>
-      <div class="info-badge"><span id="l-order-lbl">Order Types</span><span>Dine · Delivery · Parcel</span></div>
+      <div class="info-badge"><span>Cuisine</span><span>Multi-Cuisine</span></div>
+      <div class="info-badge"><span>Contact</span><span>8757761834</span></div>
+      <div class="info-badge"><span>Order Types</span><span>Dine · Delivery · Parcel</span></div>
     </div>
     <div class="cta-section">
       <button class="btn-primary" onclick="showModal('customer-modal')" id="l-order-btn">Order Karo</button>
@@ -283,7 +243,7 @@ body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text-dark
     </div>
   </div>
   <div class="menu-hero">
-    <h2 id="menu-title">Our Menu</h2>
+    <h2 id="menu-title">Hamara Menu</h2>
     <p id="menu-sub">Swaad Mein Anokha, Dil Mein Khaas</p>
   </div>
   <div class="category-tabs" id="category-tabs"></div>
@@ -302,10 +262,9 @@ body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text-dark
   <div class="app-header">
     <div class="header-logo">🌶️ Admin</div>
     <div class="header-nav">
-      <span id="sync-status" class="sync-badge sync-ok">● Synced</span>
-      <button class="sound-toggle on" id="sound-toggle-btn" onclick="toggleSound()">🔔 Sound ON</button>
+      <div class="fb-status"><div class="fb-dot" id="fb-dot"></div><span id="fb-status-txt">Firebase</span></div>
+      <button class="sound-toggle on" id="sound-toggle-btn" onclick="toggleSound()">🔔 ON</button>
       <span class="user-badge" id="admin-name-badge">Admin</span>
-      <button class="nav-btn" onclick="refreshAdmin()">↻ Refresh</button>
       <button class="nav-btn" onclick="toggleLang()">EN/हि</button>
       <button class="nav-btn" onclick="adminLogout()">Logout</button>
     </div>
@@ -319,14 +278,14 @@ body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text-dark
   </div>
   <div class="admin-section active" id="tab-dashboard">
     <div class="stats-grid" id="stats-grid"></div>
-    <div class="section-toolbar"><h3 id="lbl-recent">Recent Orders</h3></div>
+    <div class="section-toolbar"><h3>Recent Orders</h3></div>
     <div id="dashboard-orders"></div>
   </div>
   <div class="admin-section" id="tab-orders">
     <div class="section-toolbar">
-      <h3 id="lbl-allorders">All Orders</h3>
+      <h3>All Orders</h3>
       <div class="filter-bar">
-        <button class="filter-btn active" onclick="filterOrders('all',this)" id="fb-all">All</button>
+        <button class="filter-btn active" onclick="filterOrders('all',this)">All</button>
         <button class="filter-btn" onclick="filterOrders('dine-in',this)">Dine-In</button>
         <button class="filter-btn" onclick="filterOrders('delivery',this)">Delivery</button>
         <button class="filter-btn" onclick="filterOrders('parcel',this)">Parcel</button>
@@ -366,13 +325,13 @@ body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text-dark
       <button onclick="toggleAuthTab('register',this)" id="tab-reg-lbl">Register</button>
     </div>
     <div id="login-form">
-      <div class="form-group"><label id="lbl-mobile">Mobile Number</label><input type="tel" id="c-phone" placeholder="10-digit number"></div>
-      <div class="form-group"><label id="lbl-pass">Password</label><input type="password" id="c-pass" placeholder="••••••"></div>
+      <div class="form-group"><label>Mobile Number</label><input type="tel" id="c-phone" placeholder="10-digit number"></div>
+      <div class="form-group"><label>Password</label><input type="password" id="c-pass" placeholder="••••••"></div>
       <div class="error-msg" id="c-login-err">Mobile ya password galat hai</div>
       <button class="btn-primary" style="width:100%;margin-top:8px;" onclick="customerLogin()" id="btn-login-lbl">Login Karein</button>
     </div>
     <div id="register-form" style="display:none;">
-      <div class="form-group"><label id="lbl-fullname">Pura Naam</label><input type="text" id="r-name" placeholder="Aapka naam"></div>
+      <div class="form-group"><label>Pura Naam</label><input type="text" id="r-name" placeholder="Aapka naam"></div>
       <div class="form-group"><label>Mobile Number</label><input type="tel" id="r-phone" placeholder="10-digit number"></div>
       <div class="form-group"><label>Password</label><input type="password" id="r-pass" placeholder="••••••"></div>
       <div class="error-msg" id="c-reg-err">Yeh number already registered hai</div>
@@ -396,15 +355,15 @@ body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text-dark
 <div class="modal-overlay" id="order-modal">
   <div class="modal-box order-modal">
     <button class="modal-close" onclick="closeModal('order-modal')">✕</button>
-    <div class="modal-title" id="ord-modal-title">Order Summary</div>
-    <p class="modal-sub" id="ord-modal-sub">Check karein aur place karein</p>
+    <div class="modal-title">Order Summary</div>
+    <p class="modal-sub">Check karein aur place karein</p>
     <div class="order-type-select">
       <button class="otype-btn active" onclick="setOrderType('dine-in',this)">🍽️ Dine-In</button>
       <button class="otype-btn" onclick="setOrderType('delivery',this)">🛵 Delivery</button>
       <button class="otype-btn" onclick="setOrderType('parcel',this)">📦 Parcel</button>
     </div>
     <div id="dine-in-field">
-      <div class="form-group"><label id="lbl-table">Table Number</label>
+      <div class="form-group"><label>Table Number</label>
         <select id="table-select">
           <option value="1">Table 1</option><option value="2">Table 2</option><option value="3">Table 3</option>
           <option value="4">Table 4</option><option value="5">Table 5</option><option value="6">Table 6</option>
@@ -414,11 +373,11 @@ body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text-dark
       </div>
     </div>
     <div id="delivery-field" style="display:none;">
-      <div class="form-group"><label id="lbl-addr">Delivery Address</label><textarea id="delivery-addr" rows="2" placeholder="Pura address likhein..."></textarea></div>
+      <div class="form-group"><label>Delivery Address</label><textarea id="delivery-addr" rows="2" placeholder="Pura address likhein..."></textarea></div>
     </div>
     <div class="cart-items-list" id="cart-items-list"></div>
     <div class="order-total-row">
-      <span class="order-total-label" id="lbl-total">Total</span>
+      <span class="order-total-label">Total</span>
       <span class="order-total-amt" id="order-total-display">₹0</span>
     </div>
     <button class="btn-primary" style="width:100%;margin-top:8px;" onclick="placeOrder()" id="btn-place-order">Order Place Karein</button>
@@ -428,19 +387,18 @@ body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text-dark
 <div class="modal-overlay" id="my-orders-modal">
   <div class="modal-box" style="max-width:600px;">
     <button class="modal-close" onclick="closeModal('my-orders-modal')">✕</button>
-    <div class="modal-title" id="my-orders-title">Mere Orders</div>
-    <p class="modal-sub" id="my-orders-sub">Aapke sare orders</p>
+    <div class="modal-title">Mere Orders</div>
+    <p class="modal-sub">Aapke sare orders</p>
     <div id="my-orders-list"></div>
   </div>
 </div>
 
-<!-- RATING MODAL -->
 <div class="modal-overlay" id="rating-modal">
   <div class="modal-box" style="max-width:380px;text-align:center;">
     <button class="modal-close" onclick="closeModal('rating-modal')">✕</button>
     <div class="modal-title">⭐ Rate Your Order</div>
     <p class="modal-sub" id="rating-order-id">Order #RC...</p>
-    <p style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--text-mid);margin-bottom:16px;" id="rating-lbl-txt">Khana kaisa laga? Batayein!</p>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--text-mid);margin-bottom:16px;">Khana kaisa laga? Batayein!</p>
     <div class="star-rating" id="star-rating">
       <span class="star" onclick="setRating(1)">★</span>
       <span class="star" onclick="setRating(2)">★</span>
@@ -449,16 +407,15 @@ body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text-dark
       <span class="star" onclick="setRating(5)">★</span>
     </div>
     <div class="form-group" style="margin-top:16px;text-align:left;">
-      <label id="lbl-review">Review (optional)</label>
+      <label>Review (optional)</label>
       <textarea id="review-text" rows="2" placeholder="Koi sujhav ya taarif..."></textarea>
     </div>
-    <button class="btn-primary" style="width:100%;margin-top:8px;" onclick="submitRating()" id="btn-submit-rating">Rating Submit Karein</button>
+    <button class="btn-primary" style="width:100%;margin-top:8px;" onclick="submitRating()">Rating Submit Karein</button>
   </div>
 </div>
 
-<!-- BILL MODAL -->
 <div class="modal-overlay" id="bill-modal">
-  <div class="modal-box bill-modal">
+  <div class="modal-box" style="max-width:420px;">
     <button class="modal-close" onclick="closeModal('bill-modal')">✕</button>
     <div class="modal-title">🖨️ Bill</div>
     <p class="modal-sub">Print ya download karein</p>
@@ -470,8 +427,30 @@ body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text-dark
   </div>
 </div>
 
-<script>
-// ─── MENU DATA ────────────────────────────────────────────────
+<!-- FIREBASE SDK -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, set, get, push, onValue, remove, update, query, orderByChild, endAt } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+// ── FIREBASE CONFIG ───────────────────────────────────────────
+const firebaseConfig = {
+  apiKey: "AIzaSyDwnIvcGj0b9jXI73-6054Emu5topskGbc",
+  authDomain: "red-chilli-cafe-54b9c.firebaseapp.com",
+  databaseURL: "https://red-chilli-cafe-54b9c-default-rtdb.firebaseio.com",
+  projectId: "red-chilli-cafe-54b9c",
+  storageBucket: "red-chilli-cafe-54b9c.firebasestorage.app",
+  messagingSenderId: "793653488619",
+  appId: "1:793653488619:web:7f1ee37298a0d3117747ae",
+  measurementId: "G-DQRYBWVQ9W"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+// 20 days in milliseconds
+const TWENTY_DAYS_MS = 20 * 24 * 60 * 60 * 1000;
+
+// ── MENU DATA ─────────────────────────────────────────────────
 const MENU_DATA=[
   {id:'m1',cat:'Momos',subcat:'Veg',name:'Veg Steam Momos',halfPrice:60,fullPrice:100,hasSizes:true,hidden:false},
   {id:'m2',cat:'Momos',subcat:'Veg',name:'Veg Fry Momos',halfPrice:80,fullPrice:130,hasSizes:true,hidden:false},
@@ -591,96 +570,32 @@ const ADMIN_ACCOUNTS=[
   {name:'Staff',username:'staff',password:'staff789',role:'Staff'},
 ];
 
-// ─── LANGUAGE ────────────────────────────────────────────────
+// ── LANGUAGE ──────────────────────────────────────────────────
 let lang='hi';
-const T={
-  hi:{
-    tagline:'Har Niwaala Ek Yaad Banata Hai',
-    orderBtn:'Order Karo',adminBtn:'Admin Login',
-    back:'← Wapas',myOrders:'Mere Orders',
-    menuTitle:'Hamara Menu',menuSub:'Swaad Mein Anokha, Dil Mein Khaas',
-    cartCta:'Order Karo →',
-    ordModalTitle:'Order Summary',ordModalSub:'Check karein aur place karein',
-    tableLabel:'Table Number',addrLabel:'Delivery Address',
-    totalLabel:'Kul Jama',placeOrder:'Order Place Karein',
-    myOrdersTitle:'Mere Orders',myOrdersSub:'Aapke sare orders',
-    custModalSub:'Login ya Register karein',
-    loginTab:'Login',regTab:'Register',
-    mobileLabel:'Mobile Number',passLabel:'Password',nameLabel:'Pura Naam',
-    loginBtn:'Login Karein',regBtn:'Register Karein',
-    ratingTxt:'Khana kaisa laga? Batayein!',
-    reviewLabel:'Review (optional)',ratingBtn:'Rating Submit Karein',
-    soundOn:'🔔 Sound ON',soundOff:'🔕 Sound OFF',
-    recentOrders:'Recent Orders',allOrders:'All Orders',
-  },
-  en:{
-    tagline:'Every Bite Creates a Memory',
-    orderBtn:'Order Now',adminBtn:'Admin Login',
-    back:'← Back',myOrders:'My Orders',
-    menuTitle:'Our Menu',menuSub:'Unique in Taste, Special in Heart',
-    cartCta:'Place Order →',
-    ordModalTitle:'Order Summary',ordModalSub:'Review and place your order',
-    tableLabel:'Table Number',addrLabel:'Delivery Address',
-    totalLabel:'Total',placeOrder:'Place Order',
-    myOrdersTitle:'My Orders',myOrdersSub:'All your orders',
-    custModalSub:'Login or Register',
-    loginTab:'Login',regTab:'Register',
-    mobileLabel:'Mobile Number',passLabel:'Password',nameLabel:'Full Name',
-    loginBtn:'Login',regBtn:'Register',
-    ratingTxt:'How was your food? Let us know!',
-    reviewLabel:'Review (optional)',ratingBtn:'Submit Rating',
-    soundOn:'🔔 Sound ON',soundOff:'🔕 Sound OFF',
-    recentOrders:'Recent Orders',allOrders:'All Orders',
-  }
+window.toggleLang=function(){
+  lang=lang==='hi'?'en':'hi';
+  const t=lang==='hi'?'Har Niwaala Ek Yaad Banata Hai':'Every Bite Creates a Memory';
+  const el=document.getElementById('l-tagline');if(el)el.textContent=t;
+  const mh=document.getElementById('menu-title');if(mh)mh.textContent=lang==='hi'?'Hamara Menu':'Our Menu';
 };
 
-function toggleLang(){
-  lang=lang==='hi'?'en':'hi';
-  applyLang();
-}
-
-function applyLang(){
-  const t=T[lang];
-  const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
-  set('l-tagline',t.tagline);
-  set('l-order-btn',t.orderBtn);set('l-admin-btn',t.adminBtn);
-  set('nav-back',t.back);set('nav-myorders',t.myOrders);
-  set('menu-title',t.menuTitle);set('menu-sub',t.menuSub);
-  set('cart-cta',t.cartCta);
-  set('ord-modal-title',t.ordModalTitle);set('ord-modal-sub',t.ordModalSub);
-  set('lbl-table',t.tableLabel);set('lbl-addr',t.addrLabel);
-  set('lbl-total',t.totalLabel);set('btn-place-order',t.placeOrder);
-  set('my-orders-title',t.myOrdersTitle);set('my-orders-sub',t.myOrdersSub);
-  set('cust-modal-sub',t.custModalSub);
-  set('tab-login-lbl',t.loginTab);set('tab-reg-lbl',t.regTab);
-  set('lbl-mobile',t.mobileLabel);set('lbl-pass',t.passLabel);set('lbl-fullname',t.nameLabel);
-  set('btn-login-lbl',t.loginBtn);set('btn-reg-lbl',t.regBtn);
-  set('rating-lbl-txt',t.ratingTxt);set('lbl-review',t.reviewLabel);set('btn-submit-rating',t.ratingBtn);
-  set('lbl-recent',t.recentOrders);set('lbl-allorders',t.allOrders);
-  const sb=document.getElementById('sound-toggle-btn');
-  if(sb) sb.textContent=S.soundOn?t.soundOn:t.soundOff;
-}
-
-// ─── STATE ───────────────────────────────────────────────────
+// ── STATE ─────────────────────────────────────────────────────
 let S={
   currentCustomer:null,currentAdmin:null,cart:[],
   orderType:'dine-in',menuItems:JSON.parse(JSON.stringify(MENU_DATA)),
   orders:[],customers:[],auditLog:[],
-  currentFilter:'all',useSharedStorage:false,
-  soundOn:true,
-  lastOrderCount:0,
+  currentFilter:'all',soundOn:true,
   ratingOrderId:null,pendingRating:0,
 };
 
-// ─── SOUND ───────────────────────────────────────────────────
+// ── SOUND ─────────────────────────────────────────────────────
 let audioCtx=null;
-function playNotifSound(){
+function playSound(){
   if(!S.soundOn)return;
   try{
-    if(!audioCtx) audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+    if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();
     [880,1100,1320].forEach((freq,i)=>{
-      const osc=audioCtx.createOscillator();
-      const gain=audioCtx.createGain();
+      const osc=audioCtx.createOscillator(),gain=audioCtx.createGain();
       osc.connect(gain);gain.connect(audioCtx.destination);
       osc.frequency.value=freq;osc.type='sine';
       gain.gain.setValueAtTime(0,audioCtx.currentTime+i*0.12);
@@ -692,106 +607,217 @@ function playNotifSound(){
   }catch(e){}
 }
 
-function toggleSound(){
+window.toggleSound=function(){
   S.soundOn=!S.soundOn;
   const btn=document.getElementById('sound-toggle-btn');
-  if(btn){
-    btn.textContent=S.soundOn?T[lang].soundOn:T[lang].soundOff;
-    btn.classList.toggle('on',S.soundOn);
-  }
-  if(S.soundOn) playNotifSound();
+  if(btn){btn.textContent=S.soundOn?'🔔 ON':'🔕 OFF';btn.classList.toggle('on',S.soundOn);}
+  if(S.soundOn)playSound();
+};
+
+// ── FIREBASE HELPERS ──────────────────────────────────────────
+function setFbStatus(ok){
+  const dot=document.getElementById('fb-dot');
+  const txt=document.getElementById('fb-status-txt');
+  if(dot)dot.className='fb-dot'+(ok?'':' err');
+  if(txt)txt.textContent=ok?'Firebase ✓':'Firebase ✗';
 }
 
-// ─── STORAGE ─────────────────────────────────────────────────
-async function tryGet(key){try{const r=await window.storage.get(key,true);return r?JSON.parse(r.value):null;}catch(e){return null;}}
-async function trySet(key,val){try{await window.storage.set(key,JSON.stringify(val),true);return true;}catch(e){return false;}}
+// ── 20-DAY AUTO DELETE ────────────────────────────────────────
+async function deleteOldOrders(){
+  try{
+    const cutoff=Date.now()-TWENTY_DAYS_MS;
+    const ordersRef=ref(db,'orders');
+    const snap=await get(ordersRef);
+    if(!snap.exists())return;
+    const data=snap.val();
+    const deletes=[];
+    Object.entries(data).forEach(([key,order])=>{
+      if(order.timestamp&&order.timestamp<cutoff){
+        deletes.push(remove(ref(db,'orders/'+key)));
+      }
+    });
+    if(deletes.length>0){
+      await Promise.all(deletes);
+      addAudit(`Auto-delete: ${deletes.length} purane orders (20 din se zyada) delete kiye`);
+      await saveAudit();
+    }
+  }catch(e){console.error('Auto-delete error:',e);}
+}
 
+// ── LOAD DATA ─────────────────────────────────────────────────
 async function loadAll(){
-  const testOk=await trySet('rc_ping',Date.now());
-  if(testOk){
-    S.useSharedStorage=true;
-    const[orders,customers,menu,audit]=await Promise.all([tryGet('rc_orders'),tryGet('rc_customers'),tryGet('rc_menu'),tryGet('rc_audit')]);
-    if(orders)S.orders=orders;
-    if(customers)S.customers=customers;
-    if(menu)S.menuItems=menu;
-    if(audit)S.auditLog=audit;
-    setSyncBadge(true);
-  }else{
-    S.useSharedStorage=false;
-    S.orders=JSON.parse(localStorage.getItem('rc_orders')||'[]');
-    S.customers=JSON.parse(localStorage.getItem('rc_customers')||'[]');
-    const m=localStorage.getItem('rc_menu');if(m)S.menuItems=JSON.parse(m);
-    S.auditLog=JSON.parse(localStorage.getItem('rc_audit')||'[]');
-    setSyncBadge(false);
+  try{
+    const [ordSnap,custSnap,menuSnap,auditSnap]=await Promise.all([
+      get(ref(db,'orders')),
+      get(ref(db,'customers')),
+      get(ref(db,'menu')),
+      get(ref(db,'audit')),
+    ]);
+    if(ordSnap.exists()){
+      const raw=ordSnap.val();
+      S.orders=Object.entries(raw).map(([k,v])=>({...v,_fbKey:k}))
+        .sort((a,b)=>b.timestamp-a.timestamp);
+    }
+    if(custSnap.exists()){
+      const raw=custSnap.val();
+      S.customers=Object.entries(raw).map(([k,v])=>({...v,_fbKey:k}));
+    }
+    if(menuSnap.exists()){
+      const raw=menuSnap.val();
+      // Merge hidden states from Firebase into local MENU_DATA
+      S.menuItems=JSON.parse(JSON.stringify(MENU_DATA));
+      S.menuItems.forEach(item=>{
+        if(raw[item.id]!==undefined)item.hidden=raw[item.id].hidden||false;
+      });
+    }
+    if(auditSnap.exists()){
+      const raw=auditSnap.val();
+      S.auditLog=Object.values(raw).sort((a,b)=>b.ts-a.ts).slice(0,200);
+    }
+    setFbStatus(true);
+  }catch(e){
+    console.error('Load error:',e);
+    setFbStatus(false);
   }
-  S.lastOrderCount=S.orders.length;
 }
 
-async function saveAll(){
-  document.getElementById('saving-ind').style.display='block';
-  if(S.useSharedStorage){
-    await Promise.all([trySet('rc_orders',S.orders),trySet('rc_customers',S.customers),trySet('rc_menu',S.menuItems),trySet('rc_audit',S.auditLog)]);
-  }else{
-    localStorage.setItem('rc_orders',JSON.stringify(S.orders));
-    localStorage.setItem('rc_customers',JSON.stringify(S.customers));
-    localStorage.setItem('rc_menu',JSON.stringify(S.menuItems));
-    localStorage.setItem('rc_audit',JSON.stringify(S.auditLog));
-  }
-  setTimeout(()=>{document.getElementById('saving-ind').style.display='none';},700);
+// ── SAVE HELPERS ──────────────────────────────────────────────
+function showSaving(){
+  const el=document.getElementById('saving-ind');
+  if(el){el.style.display='block';setTimeout(()=>el.style.display='none',800);}
 }
 
-function setSyncBadge(shared){
-  const el=document.getElementById('sync-status');if(!el)return;
-  el.textContent=shared?'● Cross-Device':'● Local Only';
-  el.className='sync-badge '+(shared?'sync-ok':'sync-local');
+async function saveOrder(order){
+  showSaving();
+  try{
+    const ordRef=push(ref(db,'orders'));
+    await set(ordRef,order);
+    order._fbKey=ordRef.key;
+    setFbStatus(true);
+  }catch(e){setFbStatus(false);}
 }
 
-// ─── INIT ────────────────────────────────────────────────────
+async function updateOrder(order){
+  showSaving();
+  if(!order._fbKey)return;
+  try{
+    const {_fbKey,...data}=order;
+    await set(ref(db,'orders/'+_fbKey),data);
+    setFbStatus(true);
+  }catch(e){setFbStatus(false);}
+}
+
+async function deleteOrderFb(order){
+  showSaving();
+  if(!order._fbKey)return;
+  try{
+    await remove(ref(db,'orders/'+order._fbKey));
+    setFbStatus(true);
+  }catch(e){setFbStatus(false);}
+}
+
+async function saveCustomer(cust){
+  showSaving();
+  try{
+    const custRef=push(ref(db,'customers'));
+    await set(custRef,{id:cust.id,name:cust.name,phone:cust.phone,password:cust.password});
+    cust._fbKey=custRef.key;
+    setFbStatus(true);
+  }catch(e){setFbStatus(false);}
+}
+
+async function saveMenuHidden(){
+  showSaving();
+  try{
+    const menuData={};
+    S.menuItems.forEach(item=>{menuData[item.id]={hidden:item.hidden};});
+    await set(ref(db,'menu'),menuData);
+    setFbStatus(true);
+  }catch(e){setFbStatus(false);}
+}
+
+async function saveAudit(){
+  try{
+    const auditData={};
+    S.auditLog.slice(0,200).forEach((entry,i)=>{
+      auditData['log_'+String(i).padStart(4,'0')]={...entry,ts:entry.ts||Date.now()-i};
+    });
+    await set(ref(db,'audit'),auditData);
+  }catch(e){}
+}
+
+// ── REALTIME LISTENER (Admin new orders) ──────────────────────
+let ordersListener=null;
+let prevOrderCount=0;
+
+function startRealtimeListener(){
+  if(ordersListener)return;
+  ordersListener=onValue(ref(db,'orders'),(snap)=>{
+    if(!S.currentAdmin)return;
+    const raw=snap.exists()?snap.val():{};
+    const newOrders=Object.entries(raw).map(([k,v])=>({...v,_fbKey:k}))
+      .sort((a,b)=>b.timestamp-a.timestamp);
+    const newCount=newOrders.length;
+    if(prevOrderCount>0&&newCount>prevOrderCount){
+      const diff=newCount-prevOrderCount;
+      showNewOrderAlert(diff);
+      playSound();
+    }
+    prevOrderCount=newCount;
+    S.orders=newOrders;
+    if(S.currentAdmin)buildAdminPanel();
+  });
+}
+
+function stopRealtimeListener(){
+  ordersListener=null;prevOrderCount=0;
+}
+
+// ── INIT ─────────────────────────────────────────────────────
 async function init(){
+  document.getElementById('loading-sub').textContent='Firebase se connect ho raha hai...';
   await loadAll();
+  await deleteOldOrders(); // cleanup 20+ day old orders on startup
   document.getElementById('loading-screen').style.display='none';
   showView('landing');
-  document.querySelectorAll('.modal-overlay').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');}));
-  // Auto-refresh for admin (check new orders every 20s)
-  setInterval(async()=>{
-    if(S.currentAdmin&&S.useSharedStorage){
-      const prev=S.orders.length;
-      const freshOrders=await tryGet('rc_orders');
-      if(freshOrders&&freshOrders.length>prev){
-        S.orders=freshOrders;
-        const newCount=freshOrders.length-prev;
-        showNewOrderAlert(newCount);
-        playNotifSound();
-        buildAdminPanel();
-      }
-    }
-  },20000);
+  document.querySelectorAll('.modal-overlay').forEach(m=>
+    m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');})
+  );
+  // Run auto-delete daily
+  setInterval(deleteOldOrders,24*60*60*1000);
 }
 
-// ─── VIEWS & MODALS ──────────────────────────────────────────
+// ── VIEWS & MODALS ────────────────────────────────────────────
 function showView(n){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.getElementById(n==='menu'?'menu-page':n==='admin'?'admin-page':'landing').classList.add('active');
 }
+window.showView=showView;
+
 function showModal(id){if(id==='order-modal')renderOrderModal();document.getElementById(id).classList.add('open');}
 function closeModal(id){document.getElementById(id).classList.remove('open');}
-function notify(msg){const n=document.getElementById('notif');n.textContent=msg;n.classList.add('show');setTimeout(()=>n.classList.remove('show'),3000);}
+window.showModal=showModal;window.closeModal=closeModal;
+
+function notify(msg){
+  const n=document.getElementById('notif');n.textContent=msg;n.classList.add('show');
+  setTimeout(()=>n.classList.remove('show'),3000);
+}
 
 function showNewOrderAlert(count){
   const el=document.getElementById('new-order-alert');
   el.textContent=`🔔 ${count} Naya Order Aaya!`;
   el.style.display='block';
-  setTimeout(()=>{el.style.display='none';},4000);
+  setTimeout(()=>el.style.display='none',4000);
 }
 
-// ─── AUTH ────────────────────────────────────────────────────
-function toggleAuthTab(tab,btn){
+// ── AUTH ──────────────────────────────────────────────────────
+window.toggleAuthTab=function(tab,btn){
   document.querySelectorAll('.tab-toggle button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
   document.getElementById('login-form').style.display=tab==='login'?'block':'none';
   document.getElementById('register-form').style.display=tab==='register'?'block':'none';
-}
+};
 
-async function customerLogin(){
+window.customerLogin=async function(){
   const phone=document.getElementById('c-phone').value.trim();
   const pass=document.getElementById('c-pass').value.trim();
   const cust=S.customers.find(c=>c.phone===phone&&c.password===pass);
@@ -800,22 +826,23 @@ async function customerLogin(){
   S.currentCustomer=cust;closeModal('customer-modal');
   document.getElementById('customer-name-badge').textContent=cust.name;
   buildMenu();showView('menu');notify('Swagat hai, '+cust.name+'!');
-}
+};
 
-async function customerRegister(){
+window.customerRegister=async function(){
   const name=document.getElementById('r-name').value.trim();
   const phone=document.getElementById('r-phone').value.trim();
   const pass=document.getElementById('r-pass').value.trim();
   if(!name||!phone||!pass)return;
   if(S.customers.find(c=>c.phone===phone)){document.getElementById('c-reg-err').style.display='block';return;}
   const cust={id:'cust_'+Date.now(),name,phone,password:pass};
-  S.customers.push(cust);await saveAll();
+  S.customers.push(cust);
+  await saveCustomer(cust);
   S.currentCustomer=cust;closeModal('customer-modal');
   document.getElementById('customer-name-badge').textContent=cust.name;
   buildMenu();showView('menu');notify('Swagat hai, '+name+'!');
-}
+};
 
-async function adminLogin(){
+window.adminLogin=async function(){
   const user=document.getElementById('a-user').value.trim();
   const pass=document.getElementById('a-pass').value.trim();
   const admin=ADMIN_ACCOUNTS.find(a=>a.username===user&&a.password===pass);
@@ -823,16 +850,18 @@ async function adminLogin(){
   document.getElementById('a-login-err').style.display='none';
   S.currentAdmin=admin;closeModal('admin-login-modal');
   document.getElementById('admin-name-badge').textContent=admin.name+' ('+admin.role+')';
-  addAudit('Admin login kiya');buildAdminPanel();showView('admin');notify('Login! '+admin.name);
-}
+  addAudit('Admin login kiya');await saveAudit();
+  prevOrderCount=S.orders.length;
+  startRealtimeListener();
+  buildAdminPanel();showView('admin');notify('Login! '+admin.name);
+};
 
-function adminLogout(){addAudit('Logout kiya');S.currentAdmin=null;showView('landing');}
+window.adminLogout=function(){
+  addAudit('Logout kiya');saveAudit();
+  S.currentAdmin=null;stopRealtimeListener();showView('landing');
+};
 
-async function refreshAdmin(){
-  await loadAll();buildAdminPanel();notify('Refresh ho gaya!');
-}
-
-// ─── MENU ────────────────────────────────────────────────────
+// ── MENU ──────────────────────────────────────────────────────
 function buildMenu(){
   const cats=[...new Set(S.menuItems.map(i=>i.cat))];
   const tabsEl=document.getElementById('category-tabs');
@@ -881,18 +910,18 @@ function buildMenu(){
   updateCartBar();
 }
 
-function addFromSelect(id){
+window.addFromSelect=function(id){
   const sel=document.getElementById('sz-'+id);const size=sel?sel.value:'full';
   const item=S.menuItems.find(i=>i.id===id);
   addToCart(id,size,size==='half'?item.halfPrice:item.fullPrice);
-}
+};
 
-function addToCart(itemId,size,price){
+window.addToCart=function(itemId,size,price){
   const item=S.menuItems.find(i=>i.id===itemId);if(!item||item.hidden)return;
   const key=itemId+'_'+size;const ex=S.cart.find(c=>c.key===key);
   if(ex){ex.qty++;}else{S.cart.push({key,itemId,itemName:item.name,size,price,qty:1,served:false});}
   updateCartBar();notify(item.name+' added!');
-}
+};
 
 function updateCartBar(){
   const total=S.cart.reduce((s,c)=>s+c.price*c.qty,0);
@@ -902,13 +931,13 @@ function updateCartBar(){
   document.getElementById('cart-bar').classList.toggle('visible',count>0);
 }
 
-// ─── ORDER ───────────────────────────────────────────────────
-function setOrderType(type,btn){
+// ── ORDER ─────────────────────────────────────────────────────
+window.setOrderType=function(type,btn){
   S.orderType=type;
   document.querySelectorAll('.otype-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
   document.getElementById('dine-in-field').style.display=type==='dine-in'?'block':'none';
   document.getElementById('delivery-field').style.display=type==='delivery'?'block':'none';
-}
+};
 
 function renderOrderModal(){
   const cl=document.getElementById('cart-items-list');
@@ -927,13 +956,13 @@ function renderOrderModal(){
   document.getElementById('order-total-display').textContent='₹'+S.cart.reduce((s,c)=>s+c.price*c.qty,0);
 }
 
-function changeQty(idx,delta){
+window.changeQty=function(idx,delta){
   S.cart[idx].qty+=delta;
   if(S.cart[idx].qty<=0)S.cart.splice(idx,1);
   updateCartBar();renderOrderModal();
-}
+};
 
-async function placeOrder(){
+window.placeOrder=async function(){
   if(!S.cart.length){notify('Cart khali hai!');return;}
   const now=new Date();
   const id='RC'+String(now.getFullYear()).slice(-2)+String(now.getMonth()+1).padStart(2,'0')+String(now.getDate()).padStart(2,'0')+String(now.getHours()).padStart(2,'0')+String(now.getMinutes()).padStart(2,'0')+String(Math.floor(Math.random()*99)+1).padStart(2,'0');
@@ -946,17 +975,18 @@ async function placeOrder(){
     address:S.orderType==='delivery'?(document.getElementById('delivery-addr').value||''):'',
     items:JSON.parse(JSON.stringify(S.cart)),
     total:S.cart.reduce((s,c)=>s+c.price*c.qty,0),
-    status:'pending',payStatus:'unpaid',
-    rating:0,review:'',
+    status:'pending',payStatus:'unpaid',rating:0,review:'',
     time:now.toLocaleString('hi-IN'),timestamp:now.getTime(),
+    expiresAt:now.getTime()+TWENTY_DAYS_MS, // 20-day expiry tag
   };
   S.orders.unshift(order);S.cart=[];
-  await saveAll();closeModal('order-modal');updateCartBar();
+  await saveOrder(order);
+  closeModal('order-modal');updateCartBar();
   notify('Order placed! ID: '+id);buildMenu();
-}
+};
 
-// ─── MY ORDERS ───────────────────────────────────────────────
-function showMyOrders(){
+// ── MY ORDERS ─────────────────────────────────────────────────
+window.showMyOrders=function(){
   const myO=S.orders.filter(o=>S.currentCustomer&&o.customerId===S.currentCustomer.id);
   document.getElementById('my-orders-list').innerHTML=myO.length?myO.map(o=>`
     <div class="order-card ${o.status}" style="margin-bottom:10px;">
@@ -973,51 +1003,44 @@ function showMyOrders(){
       <div class="order-card-body">
         ${o.items.map(i=>`<div class="order-item-row"><span>${i.itemName}${i.size&&i.size!='single'?' ('+i.size+')':''} × ${i.qty}</span><span>₹${i.price*i.qty}</span></div>`).join('')}
         <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">
-          ${o.rating?`<div style="display:flex;align-items:center;gap:4px;">
-            ${[1,2,3,4,5].map(n=>`<span style="font-size:16px;opacity:${n<=o.rating?1:0.3};">★</span>`).join('')}
-            ${o.review?`<span style="font-size:12px;color:var(--text-muted);margin-left:6px;">"${o.review}"</span>`:''}
-          </div>`:
-          `<button class="action-btn" style="background:var(--gold);color:var(--crimson-dark);" onclick="openRatingModal('${o.id}')">⭐ Rate Order</button>`}
+          ${o.rating?`<div style="display:flex;align-items:center;gap:4px;">${[1,2,3,4,5].map(n=>`<span style="font-size:16px;opacity:${n<=o.rating?1:0.3};">★</span>`).join('')}${o.review?`<span style="font-size:12px;color:var(--text-muted);margin-left:6px;">"${o.review}"</span>`:''}</div>`:
+          `<button class="action-btn" style="background:var(--gold);color:var(--crimson-dark);" onclick="openRatingModal('${o.id}')">⭐ Rate</button>`}
           <button class="action-btn btn-print" onclick="openBillModal('${o.id}')">🖨️ Bill</button>
         </div>
       </div>
     </div>`).join(''):'<div class="empty-state">Koi order nahi mila</div>';
   showModal('my-orders-modal');
-}
+};
 
-// ─── RATING ──────────────────────────────────────────────────
-function openRatingModal(orderId){
+// ── RATING ────────────────────────────────────────────────────
+window.openRatingModal=function(orderId){
   S.ratingOrderId=orderId;S.pendingRating=0;
   document.getElementById('rating-order-id').textContent='Order #'+orderId;
   document.querySelectorAll('.star').forEach(s=>s.classList.remove('active'));
   document.getElementById('review-text').value='';
   showModal('rating-modal');
-}
+};
 
-function setRating(val){
+window.setRating=function(val){
   S.pendingRating=val;
   document.querySelectorAll('.star').forEach((s,i)=>s.classList.toggle('active',i<val));
-}
+};
 
-async function submitRating(){
+window.submitRating=async function(){
   if(!S.pendingRating){notify('Pehle stars select karein!');return;}
   const order=S.orders.find(o=>o.id===S.ratingOrderId);
   if(!order){closeModal('rating-modal');return;}
   order.rating=S.pendingRating;
   order.review=document.getElementById('review-text').value.trim();
-  await saveAll();closeModal('rating-modal');
-  notify('Rating submit ho gayi! Shukriya 🙏');
-  showMyOrders();
-}
+  await updateOrder(order);
+  closeModal('rating-modal');notify('Rating submit ho gayi! Shukriya 🙏');
+  window.showMyOrders();
+};
 
-// ─── BILL ────────────────────────────────────────────────────
-function openBillModal(orderId){
+// ── BILL ──────────────────────────────────────────────────────
+window.openBillModal=function(orderId){
   const o=S.orders.find(o=>o.id===orderId);if(!o)return;
   const stars=o.rating?[1,2,3,4,5].map(n=>n<=o.rating?'★':'☆').join(''):'';
-  const lines=o.items.map(i=>{
-    const name=(i.itemName+(i.size&&i.size!='single'?' ('+i.size+')':'')).padEnd(22,' ');
-    return`<div class="bill-row"><span>${i.itemName}${i.size&&i.size!='single'?' ('+i.size+')':''} x${i.qty}</span><span>₹${i.price*i.qty}</span></div>`;
-  }).join('');
   const orderInfo=o.type==='dine-in'?`Table: ${o.tableNo}`:o.type==='delivery'?`Address: ${o.address}`:'Counter Pickup';
   document.getElementById('bill-paper').innerHTML=`
     <div class="bill-header">
@@ -1030,26 +1053,22 @@ function openBillModal(orderId){
     <div class="bill-row"><span>Type:</span><span>${o.type.toUpperCase()}</span></div>
     <div class="bill-row"><span>${orderInfo}</span><span></span></div>
     <hr class="bill-divider">
-    ${lines}
+    ${o.items.map(i=>`<div class="bill-row"><span>${i.itemName}${i.size&&i.size!='single'?' ('+i.size+')':''} x${i.qty}</span><span>₹${i.price*i.qty}</span></div>`).join('')}
     <hr class="bill-divider">
     <div class="bill-total-row"><span>TOTAL</span><span>₹${o.total}</span></div>
     <div class="bill-row" style="margin-top:6px;"><span>Payment:</span>
       <span style="font-weight:bold;color:${o.payStatus==='paid'?'#2E7D32':'#C62828'};">${o.payStatus==='paid'?'✓ PAID':'⏳ UNPAID'}</span>
     </div>
-    ${stars?`<div class="bill-row" style="margin-top:6px;"><span>Rating:</span><span>${stars}</span></div>`:''}
-    <div class="bill-footer">
-      <hr class="bill-divider">
-      Aapka Shukriya! Dobara Padhaarein 🙏<br>
-      Red Chilli Cafe — Har Niwaala Ek Yaad
-    </div>`;
+    ${stars?`<div class="bill-row"><span>Rating:</span><span>${stars}</span></div>`:''}
+    <div class="bill-footer"><hr class="bill-divider">Aapka Shukriya! Dobara Padhaarein 🙏<br>Red Chilli Cafe — Har Niwaala Ek Yaad</div>`;
   showModal('bill-modal');
-}
+};
 
-function printBill(){
+window.printBill=function(){
   const content=document.getElementById('bill-paper').innerHTML;
   const w=window.open('','_blank','width=400,height=600');
-  w.document.write(`<html><head><title>Bill - Red Chilli Cafe</title>
-    <style>body{font-family:'Courier New',monospace;padding:20px;max-width:350px;margin:0 auto;}
+  w.document.write(`<html><head><title>Bill</title><style>
+    body{font-family:'Courier New',monospace;padding:20px;max-width:350px;margin:0 auto;}
     .bill-row{display:flex;justify-content:space-between;font-size:13px;padding:3px 0;}
     .bill-divider{border:none;border-top:1px dashed #ccc;margin:10px 0;}
     .bill-total-row{display:flex;justify-content:space-between;font-size:15px;font-weight:bold;padding:6px 0;border-top:2px solid #333;}
@@ -1057,20 +1076,19 @@ function printBill(){
     .bill-sub{font-size:11px;color:#666;margin-top:4px;}</style></head>
     <body>${content}</body></html>`);
   w.document.close();w.print();
-}
+};
 
-function downloadBill(){
+window.downloadBill=function(){
   const content=document.getElementById('bill-paper').innerText;
   const blob=new Blob([content],{type:'text/plain'});
   const a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);
-  a.download='RedChilliCafe_Bill.txt';a.click();
-}
+  a.href=URL.createObjectURL(blob);a.download='RedChilliCafe_Bill.txt';a.click();
+};
 
-// ─── ADMIN PANEL ─────────────────────────────────────────────
+// ── ADMIN PANEL ───────────────────────────────────────────────
 function buildAdminPanel(){renderStats();renderDashboardOrders();renderOrdersList();renderMenuMgmt();renderAccounts();renderAuditLog();}
 
-function switchAdminTab(tab,btn){
+window.switchAdminTab=function(tab,btn){
   document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');
   document.querySelectorAll('.admin-section').forEach(s=>s.classList.remove('active'));
   document.getElementById('tab-'+tab).classList.add('active');
@@ -1079,7 +1097,7 @@ function switchAdminTab(tab,btn){
   else if(tab==='menu-mgmt')renderMenuMgmt();
   else if(tab==='accounts')renderAccounts();
   else if(tab==='audit')renderAuditLog();
-}
+};
 
 function renderStats(){
   const total=S.orders.length,pending=S.orders.filter(o=>o.status==='pending').length;
@@ -1105,11 +1123,11 @@ function renderDashboardOrders(){
   document.getElementById('dashboard-orders').innerHTML=r.length?buildOrderCards(r,false):'<div class="empty-state">Abhi koi order nahi</div>';
 }
 
-function filterOrders(filter,btn){
+window.filterOrders=function(filter,btn){
   S.currentFilter=filter;
   document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
   renderOrdersList();
-}
+};
 
 function renderOrdersList(){
   let f=S.orders;const cf=S.currentFilter;
@@ -1126,7 +1144,7 @@ function renderOrdersList(){
 function buildOrderCards(orders,full){
   return`<div class="orders-list">${orders.map(o=>{
     const tc=o.type==='dine-in'?'dine':o.type;
-    const stars=o.rating?[1,2,3,4,5].map(n=>`<span style="font-size:13px;opacity:${n<=o.rating?1:0.3};">★</span>`).join(''):'';
+    const stars=o.rating?[1,2,3,4,5].map(n=>`<span style="font-size:12px;opacity:${n<=o.rating?1:0.3};">★</span>`).join(''):'';
     return`<div class="order-card ${o.status}">
       <div class="order-card-header" onclick="toggleOB('${o.id}')">
         <span class="order-id-badge">${o.id}</span>
@@ -1143,8 +1161,8 @@ function buildOrderCards(orders,full){
       </div>
       <div id="ob-${o.id}" style="display:none;">
         <div class="order-card-body">
-          ${o.type==='delivery'?`<div style="font-size:12px;color:#666;margin-bottom:10px;">📍 ${o.address}</div>`:''}
-          ${o.review?`<div style="font-size:12px;color:var(--text-muted);margin-bottom:10px;font-style:italic;">"${o.review}"</div>`:''}
+          ${o.type==='delivery'?`<div style="font-size:12px;color:#666;margin-bottom:8px;">📍 ${o.address}</div>`:''}
+          ${o.review?`<div style="font-size:12px;color:var(--text-muted);margin-bottom:8px;font-style:italic;">"${o.review}"</div>`:''}
           <div class="order-items-grid">
             ${o.items.map((item,ii)=>`
               <div class="order-item-row">
@@ -1169,40 +1187,47 @@ function buildOrderCards(orders,full){
   }).join('')}</div>`;
 }
 
-function toggleOB(id){const b=document.getElementById('ob-'+id);if(b)b.style.display=b.style.display==='none'?'block':'none';}
+window.toggleOB=function(id){const b=document.getElementById('ob-'+id);if(b)b.style.display=b.style.display==='none'?'block':'none';};
 
-async function togglePayStatus(orderId){
+window.togglePayStatus=async function(orderId){
   const o=S.orders.find(o=>o.id===orderId);if(!o)return;
   o.payStatus=o.payStatus==='paid'?'unpaid':'paid';
   addAudit(`Order ${orderId} payment ${o.payStatus} mark kiya`);
-  await saveAll();renderOrdersList();renderDashboardOrders();renderStats();
-  notify('Payment status: '+o.payStatus.toUpperCase());
-}
+  await updateOrder(o);await saveAudit();
+  renderOrdersList();renderDashboardOrders();renderStats();
+  notify('Payment: '+o.payStatus.toUpperCase());
+};
 
-async function toggleItemServed(orderId,ii){
+window.toggleItemServed=async function(orderId,ii){
   const o=S.orders.find(o=>o.id===orderId);if(!o)return;
   o.items[ii].served=!o.items[ii].served;
-  addAudit(`"${o.items[ii].itemName}" ${o.items[ii].served?'serve':'unserve'} kiya (${orderId})`);
-  await saveAll();renderOrdersList();renderDashboardOrders();
-}
+  addAudit(`"${o.items[ii].itemName}" ${o.items[ii].served?'serve':'unserve'} kiya`);
+  await updateOrder(o);await saveAudit();
+  renderOrdersList();renderDashboardOrders();
+};
 
-async function completeOrder(id){
+window.completeOrder=async function(id){
   const o=S.orders.find(o=>o.id===id);if(!o)return;
-  o.status='complete';addAudit('Order '+id+' complete kiya');await saveAll();
+  o.status='complete';addAudit('Order '+id+' complete kiya');
+  await updateOrder(o);await saveAudit();
   renderOrdersList();renderDashboardOrders();renderStats();notify('Order '+id+' complete!');
-}
+};
 
-async function reopenOrder(id){
+window.reopenOrder=async function(id){
   const o=S.orders.find(o=>o.id===id);if(!o)return;
-  o.status='pending';addAudit('Order '+id+' reopen kiya');await saveAll();
+  o.status='pending';addAudit('Order '+id+' reopen kiya');
+  await updateOrder(o);await saveAudit();
   renderOrdersList();renderStats();
-}
+};
 
-async function deleteOrder(id){
+window.deleteOrder=async function(id){
   if(!confirm('Order delete karna chahte hain?'))return;
-  S.orders=S.orders.filter(o=>o.id!==id);addAudit('Order '+id+' delete kiya');await saveAll();
+  const o=S.orders.find(o=>o.id===id);if(!o)return;
+  S.orders=S.orders.filter(o=>o.id!==id);
+  addAudit('Order '+id+' delete kiya');
+  await deleteOrderFb(o);await saveAudit();
   renderOrdersList();renderDashboardOrders();renderStats();
-}
+};
 
 function renderMenuMgmt(){
   const cats=[...new Set(S.menuItems.map(i=>i.cat))];
@@ -1223,11 +1248,13 @@ function renderMenuMgmt(){
   document.getElementById('menu-mgmt-list').innerHTML=html;
 }
 
-async function toggleHideItem(id){
+window.toggleHideItem=async function(id){
   const item=S.menuItems.find(i=>i.id===id);if(!item)return;
-  item.hidden=!item.hidden;addAudit(`"${item.name}" ${item.hidden?'hide':'show'} kiya`);await saveAll();
+  item.hidden=!item.hidden;
+  addAudit(`"${item.name}" ${item.hidden?'hide':'show'} kiya`);
+  await saveMenuHidden();await saveAudit();
   renderMenuMgmt();notify(item.name+(item.hidden?' hide':' show')+' ho gaya');
-}
+};
 
 function renderAccounts(){
   document.getElementById('accounts-list').innerHTML=ADMIN_ACCOUNTS.map(a=>`
@@ -1244,7 +1271,7 @@ function renderAccounts(){
 }
 
 function addAudit(msg){
-  S.auditLog.unshift({time:new Date().toLocaleString('hi-IN'),who:S.currentAdmin?S.currentAdmin.name:'System',what:msg});
+  S.auditLog.unshift({time:new Date().toLocaleString('hi-IN'),who:S.currentAdmin?S.currentAdmin.name:'System',what:msg,ts:Date.now()});
   if(S.auditLog.length>200)S.auditLog.pop();
 }
 
@@ -1257,10 +1284,12 @@ function renderAuditLog(){
     </div>`).join(''):'<div class="empty-state">Log khali hai</div>';
 }
 
-async function clearAudit(){
+window.clearAudit=async function(){
   if(!confirm('Audit log clear karna chahte hain?'))return;
-  S.auditLog=[];await saveAll();renderAuditLog();
-}
+  S.auditLog=[];
+  await set(ref(db,'audit'),{});
+  renderAuditLog();
+};
 
 init();
 </script>
