@@ -1101,7 +1101,7 @@ window.switchAdminTab=function(tab,btn){
 };
 
 function renderStats(){
-  const total=S.orders.length,pending=S.orders.filter(o=>o.status==='pending').length;
+  const total=S.orders.length,pending=S.orders.filter(o=>o.status==='served').length;
   const complete=S.orders.filter(o=>o.status==='complete').length;
   const revenue=S.orders.filter(o=>o.status==='complete').reduce((s,o)=>s+o.total,0);
   const today=S.orders.filter(o=>new Date(o.timestamp).toDateString()===new Date().toDateString()).length;
