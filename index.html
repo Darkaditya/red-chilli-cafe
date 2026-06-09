@@ -635,43 +635,98 @@ function setFbStatus(ok){
   if(txt)txt.textContent=ok?'Firebase ✓':'Firebase ✗';
 }
 
-// ── 125-DAY AUTO DELETE ────────────────────────────────────────
+// ── 125-DAY AUTO DELETE ORDERS ────────────────────────────────
 async function deleteOldOrders(){
   try{
-    const cutoff=Date.now()-ONEHUNDREADTWENTYFIVE_DAYS_MS;
-    const ordersRef=ref(db,'orders');
-    const snap=await get(ordersRef);
-    if(!snap.exists())return;
-    const data=snap.val();
-    const deletes=[];
+    const cutoff = Date.now() - ONEHUNDREADTWENTYFIVE_DAYS_MS;
+    const ordersRef = ref(db,'orders');
+    const snap = await get(ordersRef);
+
+    if(!snap.exists()) return;
+
+    const data = snap.val();
+    const deletes = [];
+
     Object.entries(data).forEach(([key,order])=>{
-      if(order.timestamp&&order.timestamp<cutoff){
-        deletes.push(remove(ref(db,'orders/'+key)));
+      if(order.timestamp && order.timestamp < cutoff){
+        deletes.push(remove(ref(db,'orders/' + key)));
       }
     });
-    if(deletes.length>0){
+
+    if(deletes.length > 0){
       await Promise.all(deletes);
       addAudit(`Auto-delete: ${deletes.length} purane orders (125 din se zyada) delete kiye`);
       await saveAudit();
     }
-  }catch(e){console.error('Auto-delete error:',e);}
-}
-  
-async function deleteOldOrders(){
-   
+
+  }catch(e){
+    console.error('Auto-delete error:',e);
+  }
 }
 
+// ── 125-DAY AUTO DELETE CUSTOMERS ─────────────────────────────
 const CUSTOMER_DELETE_DAYS =
 125 * 24 * 60 * 60 * 1000;
-  
+
 async function deleteInactiveCustomers(){
-   
+
+  try{
+
+    const snap =
+      await get(ref(db,'customers'));
+
+    if(!snap.exists()) return;
+
+    const data = snap.val();
+
+    const cutoff =
+      Date.now() - CUSTOMER_DELETE_DAYS;
+
+    for(const key in data){
+
+      const cust = data[key];
+
+      const lastActive =
+        cust.lastLogin ||
+        cust.createdAt ||
+        0;
+
+      if(lastActive < cutoff){
+
+        await remove(
+          ref(db,'customers/' + key)
+        );
+      }
+    }
+
+  }catch(e){
+    console.error(
+      'Customer auto-delete error:',
+      e
+    );
+  }
 }
 
-// ── LOAD DATA ─────────────────────────────────────────────────
+// ── LOAD DATA ────────────────────────────────────────────────
 async function loadAll(){
-  
+  try{
+
+    const [ordSnap,custSnap,menuSnap,auditSnap] =
+      await Promise.all([
+        get(ref(db,'orders')),
+        get(ref(db,'customers')),
+        get(ref(db,'menu')),
+        get(ref(db,'audit'))
+      ]);
+
+    // Aapka existing loadAll code yahan se continue hoga
+
+  }catch(e){
+    console.error(e);
+  }
 }
+  
+
 // ── LOAD DATA ─────────────────────────────────────────────────
 async function loadAll(){
   try{
