@@ -327,8 +327,20 @@ body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text-dark
     </div>
     <div id="login-form">
       <div class="form-group"><label>Mobile Number</label><input type="tel" id="c-phone" placeholder="10-digit number"></div>
-      <div class="form-group"><label>Password</label><input type="password" id="c-pass" placeholder="••••••"></div>
-      <div class="error-msg" id="c-login-err">Mobile ya password galat hai</div>
+      <div class="form-group">
+  <label>Password</label>
+  <input type="password" id="c-pass" placeholder="••••••">
+</div>
+
+<div style="text-align:right;margin-top:-8px;margin-bottom:10px;">
+  <a href="#" onclick="forgotPassword();return false;">
+    Forgot Password?
+  </a>
+</div>
+
+<div class="error-msg" id="c-login-err">
+  Mobile ya password galat hai
+</div>
       <button class="btn-primary" style="width:100%;margin-top:8px;" onclick="customerLogin()" id="btn-login-lbl">Login Karein</button>
     </div>
     <div id="register-form" style="display:none;">
@@ -625,6 +637,38 @@ function setFbStatus(ok){
 
 // ── 20-DAY AUTO DELETE ────────────────────────────────────────
 async function deleteOldOrders(){
+  const CUSTOMER_DELETE_DAYS =
+125 * 24 * 60 * 60 * 1000;
+
+async function deleteInactiveCustomers(){
+
+  const snap =
+    await get(ref(db,'customers'));
+
+  if(!snap.exists()) return;
+
+  const data = snap.val();
+
+  const cutoff =
+    Date.now() - CUSTOMER_DELETE_DAYS;
+
+  for(const key in data){
+
+    const cust=data[key];
+
+    const lastActive=
+      cust.lastLogin||
+      cust.createdAt||
+      0;
+
+    if(lastActive<cutoff){
+
+      await remove(
+        ref(db,'customers/'+key)
+      );
+    }
+  }
+}
   try{
     const cutoff=Date.now()-TWENTY_DAYS_MS;
     const ordersRef=ref(db,'orders');
@@ -721,7 +765,14 @@ async function saveCustomer(cust){
   showSaving();
   try{
     const custRef=push(ref(db,'customers'));
-    await set(custRef,{id:cust.id,name:cust.name,phone:cust.phone,password:cust.password});
+    await set(custRef,{
+  id:cust.id,
+  name:cust.name,
+  phone:cust.phone,
+  password:cust.password,
+  createdAt:cust.createdAt,
+  lastLogin:cust.lastLogin
+});
     cust._fbKey=custRef.key;
     setFbStatus(true);
   }catch(e){setFbStatus(false);}
@@ -779,6 +830,7 @@ async function init(){
   document.getElementById('loading-sub').textContent='Firebase se connect ho raha hai...';
   await loadAll();
   await deleteOldOrders(); // cleanup 20+ day old orders on startup
+  await deleteInactiveCustomers();
   document.getElementById('loading-screen').style.display='none';
   showView('landing');
   document.querySelectorAll('.modal-overlay').forEach(m=>
@@ -786,6 +838,10 @@ async function init(){
   );
   // Run auto-delete daily
   setInterval(deleteOldOrders,24*60*60*1000);
+  setInterval(
+  deleteInactiveCustomers,
+  24*60*60*1000
+);
 }
 
 // ── VIEWS & MODALS ────────────────────────────────────────────
@@ -824,7 +880,15 @@ window.customerLogin=async function(){
   const cust=S.customers.find(c=>c.phone===phone&&c.password===pass);
   if(!cust){document.getElementById('c-login-err').style.display='block';return;}
   document.getElementById('c-login-err').style.display='none';
-  S.currentCustomer=cust;closeModal('customer-modal');
+  S.currentCustomer=cust;cust.lastLogin=Date.now();
+
+if(cust._fbKey){
+  await set(
+    ref(db,'customers/'+cust._fbKey),
+    cust
+  );
+}
+  closeModal('customer-modal');
   document.getElementById('customer-name-badge').textContent=cust.name;
   buildMenu();showView('menu');notify('Swagat hai, '+cust.name+'!');
 };
@@ -835,7 +899,14 @@ window.customerRegister=async function(){
   const pass=document.getElementById('r-pass').value.trim();
   if(!name||!phone||!pass)return;
   if(S.customers.find(c=>c.phone===phone)){document.getElementById('c-reg-err').style.display='block';return;}
-  const cust={id:'cust_'+Date.now(),name,phone,password:pass};
+  const cust={
+  id:'cust_'+Date.now(),
+  name,
+  phone,
+  password:pass,
+  createdAt:Date.now(),
+  lastLogin:Date.now()
+};
   S.customers.push(cust);
   await saveCustomer(cust);
   S.currentCustomer=cust;closeModal('customer-modal');
@@ -843,6 +914,47 @@ window.customerRegister=async function(){
   buildMenu();showView('menu');notify('Swagat hai, '+name+'!');
 };
 
+  window.forgotPassword=async function(){
+
+  const phone=
+    prompt(
+      'Registered Mobile Number'
+    );
+
+  if(!phone) return;
+
+  const cust=
+    S.customers.find(
+      c=>c.phone===phone
+    );
+
+  if(!cust){
+    alert('Account nahi mila');
+    return;
+  }
+
+  const newPass=
+    prompt('Naya Password');
+
+  if(!newPass) return;
+
+  cust.password=newPass;
+
+  if(cust._fbKey){
+    await set(
+      ref(
+        db,
+        'customers/'+cust._fbKey
+      ),
+      cust
+    );
+  }
+
+  alert(
+    'Password Change Ho Gaya'
+  );
+};
+  
 window.adminLogin=async function(){
   const user=document.getElementById('a-user').value.trim();
   const pass=document.getElementById('a-pass').value.trim();
