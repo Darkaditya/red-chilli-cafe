@@ -655,10 +655,7 @@ async function deleteOldOrders(){
       await saveAudit();
     }
   }catch(e){console.error('Auto-delete error:',e);}
-}
-async function deleteOldOrders(){
-   ...
-}
+
 const CUSTOMER_DELETE_DAYS =
 125 * 24 * 60 * 60 * 1000;
 
