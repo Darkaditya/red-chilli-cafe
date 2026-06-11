@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Red Chilli Cafe — Patna</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Cinzel:wght@400;600;700&family=Lato:wght@300;400[...]
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Cinzel:wght@400;600;700&family=Lato:wght@300;[...]
 <style>
 :root{--crimson:#8B0000;--crimson-light:#C0392B;--crimson-dark:#5C0000;--gold:#C9A84C;--gold-light:#E8C97A;--cream:#FAF3E0;--cream-dark:#F0E4C8;--white:#FFFDF7;--text-dark:#1A0A00;--text-mid:#4A2010;-[...]
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -320,7 +320,7 @@ const firebaseConfig = {
   authDomain: "red-chilli-cafe-54b9c.firebaseapp.com",
   databaseURL: "https://red-chilli-cafe-54b9c-default-rtdb.firebaseio.com",
   projectId: "red-chilli-cafe-54b9c",
-  storageBucket: "red-chilli-cafe-54b9c.firebasestorage.app",
+  storageBucket: "red-chilli-cafe-54b9c.appspot.com",
   messagingSenderId: "793653488619",
   appId: "1:793653488619:web:7f1ee37298a0d3117747ae",
   measurementId: "G-DQRYBWVQ9W"
@@ -332,7 +332,7 @@ const db = getDatabase(app);
 // 20 days in milliseconds
 const TWENTY_DAYS_MS = 20 * 24 * 60 * 60 * 1000;
 // 125 days in milliseconds (used for auto-delete)
-const ONEHUNDREADTWENTYFIVE_DAYS_MS = 125 * 24 * 60 * 60 * 1000;
+const ONE_HUNDRED_TWENTY_FIVE_DAYS_MS = 125 * 24 * 60 * 60 * 1000;
 
 // ── MENU DATA ─────────────────────────────────────────────────
 const MENU_DATA=[
@@ -509,7 +509,7 @@ function setFbStatus(ok){
 // ── 125-DAY AUTO DELETE ORDERS ───────────────────────────────
 async function deleteOldOrders(){
   try{
-    const cutoff = Date.now() - ONEHUNDREADTWENTYFIVE_DAYS_MS;
+    const cutoff = Date.now() - ONE_HUNDRED_TWENTY_FIVE_DAYS_MS;
     const ordersRef = ref(db,'orders');
     const snap = await get(ordersRef);
 
@@ -578,27 +578,7 @@ async function deleteInactiveCustomers(){
   }
 }
 
-// ── LOAD DATA (placeholder) ─────────────────────────────────-
-async function loadAll(){
-  try{
-
-    const [ordSnap,custSnap,menuSnap,auditSnap] =
-      await Promise.all([
-        get(ref(db,'orders')),
-        get(ref(db,'customers')),
-        get(ref(db,'menu')),
-        get(ref(db,'audit'))
-      ]);
-
-    // Aapka existing loadAll code yahan se continue hoga
-
-  }catch(e){
-    console.error(e);
-  }
-}
-  
-
-// ── LOAD DATA (real) ─────────────────────────────────────────
+// ── LOAD DATA ─────────────────────────────────────────────────
 async function loadAll(){
   try{
     const [ordSnap,custSnap,menuSnap,auditSnap]=await Promise.all([
